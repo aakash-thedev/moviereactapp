@@ -7,14 +7,6 @@ import App from './components/App';
 import movies from './reducers/reducer';
 
 const store = createStore(movies);
-// // console.log('store', store);
-// console.log('Before State : ', store.getState());
-
-// // dispatch ( trigger an action )
-// store.dispatch({
-//   type: 'ADD_MOVIES',
-//   movies: [{'name': 'Man of steel'}]
-// })
 
 console.log('After State : ', store.getState());
 

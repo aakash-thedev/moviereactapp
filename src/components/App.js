@@ -10,18 +10,26 @@ class App extends React.Component{
 
     this.props.store.subscribe(() => {
       console.log('Updated');
+      this.forceUpdate();
     })
 
+    // basically we are dispatching the action by a hard code 
+    // what if we want this action hundreds of time
+    // simpler way is just go to actions and create a action function and everytime just call that function
+    
     this.props.store.dispatch({
       type: 'ADD_MOVIES',
       movies: data
     })
+
+
+
     console.log('Now State becomes', this.props.store.getState())
   }
 
   render(){
 
-    const movies = this.props.store.getState();
+    const {movies} = this.props.store.getState(); // { movies: [], favourites: [] }
 
     return (
       <div className = "App">

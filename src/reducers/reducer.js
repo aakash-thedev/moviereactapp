@@ -1,6 +1,15 @@
-function movies (state = [], action) {
+
+const initialMovieState = {
+    movies: [],
+    favourites: []
+}
+
+function movies (state = initialMovieState, action) {
     if (action.type === 'ADD_MOVIES'){
-        return action.movies;
+        return{
+            ...state,
+            movies: action.movies
+        }
     }
 
     return state;
