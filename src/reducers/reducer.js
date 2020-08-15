@@ -1,3 +1,4 @@
+import { ADD_MOVIES, ADD_FAVOURITES } from '../actions/action';
 
 const initialMovieState = {
     movies: [],
@@ -5,10 +6,17 @@ const initialMovieState = {
 }
 
 function movies (state = initialMovieState, action) {
-    if (action.type === 'ADD_MOVIES'){
-        return{
+    if (action.type === ADD_MOVIES){
+        return {
+            ...state, // old state
+            movies: action.movies // updated value of movie in old state
+        }
+    }
+
+    else if (action.type === ADD_FAVOURITES){
+        return {
             ...state,
-            movies: action.movies
+            favourites: []
         }
     }
 

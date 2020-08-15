@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import MovieCard from './MovieCard';
 import {data} from '../data';
+import { addMovies } from '../actions/action';
 
 class App extends React.Component{
 
@@ -17,10 +18,12 @@ class App extends React.Component{
     // what if we want this action hundreds of time
     // simpler way is just go to actions and create a action function and everytime just call that function
     
-    this.props.store.dispatch({
-      type: 'ADD_MOVIES',
-      movies: data
-    })
+    // this.props.store.dispatch({
+    //   type: 'ADD_MOVIES',
+    //   movies: data
+    // })
+
+    this.props.store.dispatch(addMovies(data));
 
 
 
@@ -46,6 +49,7 @@ class App extends React.Component{
               movies.map((movie, index) => (
                 <MovieCard movieData = {movie}
                 key = {`movies ${index}`}
+                dispatch = { this.props.store.dispatch }
                 />
               ))
             }
