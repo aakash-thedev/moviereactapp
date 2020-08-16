@@ -131,9 +131,10 @@ body {
 }
 .movie-card .left {
   flex: 1;
+
 }
 .movie-card .left img {
-  height: 250px;
+  height: 210px;
 }
 .movie-card .right {
   position: relative;

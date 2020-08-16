@@ -22,7 +22,7 @@ function movies (state = initialMovieState, action) {
 
     else if (action.type === REMOVE_FAVOURITES){
         const index = state.favourites.indexOf(action.movie);
-        delete state.favourites[index]
+        state.favourites.splice(index, 1);
         return {
             ...state,
             favourites: [...state.favourites]
