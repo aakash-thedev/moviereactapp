@@ -30,7 +30,6 @@ class App extends React.Component{
   }
 
   allMovies = () => {
-    console.log('switched to all movies tab');
     this.props.store.dispatch(addMovies(data));
   }
 
