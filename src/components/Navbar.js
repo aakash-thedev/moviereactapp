@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchedComponents from './SearchedComponent';
 import { addMovieToList, handleMovieSearch } from '../actions/action';
 
 class Navbar extends React.Component{
@@ -46,18 +47,13 @@ class Navbar extends React.Component{
 
                 {
                     showSearchResult ?
-
-                        <div className = "search-results">
-                            <div className = "search-result">
-                                <img src = {result.Poster} alt = "search-poster"></img>
-
-                                <div className = "movie-info">
-                                    <span> {result.Title} </span>
-                                    <button onClick = {() => this.handleAddToMovies(result)}> Add To Movies </button>
-                                </div>
-                            </div>
-                        </div>
-
+                        result.map((movie, index) => (
+                            <SearchedComponents
+                                result = {movie}
+                                handleAddToMovies = {this.handleAddToMovies}
+                                key = {`movies ${index}`}
+                            />
+                        ))
                     :
                         <div></div>
                 }
