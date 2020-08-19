@@ -19,7 +19,7 @@ import combineReducers from './reducers/reducer';
 
 // using currying concept
 
-const logger = ({dispatch, getState}) => (next) => (action) => {
+const logger = () => (next) => (action) => {
   if (typeof action !== 'function'){
     console.log("ACTION_TYPE = ", action.type);
   }

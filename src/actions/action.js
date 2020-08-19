@@ -5,6 +5,7 @@ export const ADD_FAVOURITES = 'ADD_FAVOURITES';
 export const REMOVE_FAVOURITES = 'REMOVE_FAVOURITES';
 export const ONLY_FAVOURITES = 'ONLY_FAVOURITES';
 export const ADD_MOVIE = 'ADD_MOVIE';
+export const ADD_SEARCH_TO_STORE = 'ADD_SEARCH_TO_STORE';
 
 export function addMovies(movieArray){
     return {
@@ -48,6 +49,14 @@ export function handleMovieSearch(searchText){
         .then(response => response.json())
         .then(movie => {
             console.log(movie);
+            dispatch( addSearchResultToStore(movie) );
         })
+    }
+}
+
+export function addSearchResultToStore(movie){
+    return {
+        type: ADD_SEARCH_TO_STORE,
+        movie
     }
 }

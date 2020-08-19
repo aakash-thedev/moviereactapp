@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { ADD_MOVIES, ADD_FAVOURITES, REMOVE_FAVOURITES, ONLY_FAVOURITES, ADD_MOVIE } from '../actions/action';
+import { ADD_MOVIES, ADD_FAVOURITES, REMOVE_FAVOURITES, ONLY_FAVOURITES, ADD_MOVIE, ADD_SEARCH_TO_STORE } from '../actions/action';
 
 const initialMovieState = {
     movies: [],
-    favourites: []
+    favourites: [],
+    IsfavListEmpty: true
 }
 
 export function movies (state = initialMovieState, action) {
@@ -40,12 +41,11 @@ export function movies (state = initialMovieState, action) {
     }
 
     else if (action.type === ADD_MOVIE){
-
-        const updatedMoviesArray = [action.movie, ...state.movies]
+        
 
         return {
             ...state,
-            movies: updatedMoviesArray
+            movies: [action.movie, ...state.movies]
         }
     }
 
@@ -55,10 +55,19 @@ export function movies (state = initialMovieState, action) {
 // creating search reducer
 
 const initialSearchState = {
-    result : {}
+    result : {},
+    showSearchResult: false
 }
 
 export function search(state = initialSearchState, action){
+
+    if (action.type === ADD_SEARCH_TO_STORE){
+        return {
+            ...state,
+            result: action.movie,
+            showSearchResult: true
+        }
+    }
     return state;
 }
 
