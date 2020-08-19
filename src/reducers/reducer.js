@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { ADD_MOVIES, ADD_FAVOURITES, REMOVE_FAVOURITES, ONLY_FAVOURITES } from '../actions/action';
+import { ADD_MOVIES, ADD_FAVOURITES, REMOVE_FAVOURITES, ONLY_FAVOURITES, ADD_MOVIE } from '../actions/action';
 
 const initialMovieState = {
     movies: [],
@@ -7,6 +7,7 @@ const initialMovieState = {
 }
 
 export function movies (state = initialMovieState, action) {
+
     if (action.type === ADD_MOVIES){
         return {
             ...state, // old state
@@ -35,6 +36,16 @@ export function movies (state = initialMovieState, action) {
         return {
             ...state,
             movies: action.movies
+        }
+    }
+
+    else if (action.type === ADD_MOVIE){
+
+        const updatedMoviesArray = [action.movie, ...state.movies]
+
+        return {
+            ...state,
+            movies: updatedMoviesArray
         }
     }
 

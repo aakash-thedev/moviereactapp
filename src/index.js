@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './components/App';
@@ -19,11 +20,13 @@ import combineReducers from './reducers/reducer';
 // using currying concept
 
 const logger = ({dispatch, getState}) => (next) => (action) => {
-  console.log("ACTION_TYPE = ", action.type);
+  if (typeof action !== 'function'){
+    console.log("ACTION_TYPE = ", action.type);
+  }
   next(action);
 }
 
-const store = createStore(combineReducers, applyMiddleware(logger));
+const store = createStore(combineReducers, applyMiddleware(logger, thunk));
 
 console.log('After State : ', store.getState());
 

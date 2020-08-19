@@ -1,7 +1,10 @@
+// apikey=9d25581d
+
 export const ADD_MOVIES = 'ADD_MOVIES';
 export const ADD_FAVOURITES = 'ADD_FAVOURITES';
 export const REMOVE_FAVOURITES = 'REMOVE_FAVOURITES';
 export const ONLY_FAVOURITES = 'ONLY_FAVOURITES';
+export const ADD_MOVIE = 'ADD_MOVIE';
 
 export function addMovies(movieArray){
     return {
@@ -28,5 +31,23 @@ export function renderOnlyFavouriteMovies(favouriteArray){
     return {
         type: ONLY_FAVOURITES,
         movies: favouriteArray
+    }
+}
+
+export function addMovieToList(movieData){
+    return {
+        type: ADD_MOVIE,
+        movie: movieData
+    }
+}
+
+export function handleMovieSearch(searchText){
+    const url = `http://www.omdbapi.com/?apikey=9d25581d&t=${searchText}`;
+    return function(dispatch){
+        fetch(url)
+        .then(response => response.json())
+        .then(movie => {
+            console.log(movie);
+        })
     }
 }
