@@ -17,7 +17,7 @@ class Navbar extends React.Component{
     }
 
     handleChange = (event) => {
-        console.log(event.target.value);
+        // console.log(event.target.value);
         
         if (event.target.value === ""){
             this.props.search.showSearchResult = false;
@@ -47,13 +47,10 @@ class Navbar extends React.Component{
 
                 {
                     showSearchResult ?
-                        result.map((movie, index) => (
-                            <SearchedComponents
-                                result = {movie}
-                                handleAddToMovies = {this.handleAddToMovies}
-                                key = {`movies ${index}`}
-                            />
-                        ))
+                        <SearchedComponents
+                            result = {result}
+                            handleAddToMovies = {this.handleAddToMovies}
+                        />
                     :
                         <div></div>
                 }

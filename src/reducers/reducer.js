@@ -55,7 +55,7 @@ export function movies (state = initialMovieState, action) {
 // creating search reducer
 
 const initialSearchState = {
-    result : [],
+    result : {},
     showSearchResult: false
 }
 
@@ -64,7 +64,7 @@ export function search(state = initialSearchState, action){
     if (action.type === ADD_SEARCH_TO_STORE){
         return {
             ...state,
-            result: action.movies,
+            result: action.movie,
             showSearchResult: true
         }
     }
