@@ -6,6 +6,7 @@ export const REMOVE_FAVOURITES = 'REMOVE_FAVOURITES';
 export const ONLY_FAVOURITES = 'ONLY_FAVOURITES';
 export const ADD_MOVIE = 'ADD_MOVIE';
 export const ADD_SEARCH_TO_STORE = 'ADD_SEARCH_TO_STORE';
+// export const ALL_MOVIES = "ALL_MOVIES";
 
 export function addMovies(movieArray){
     return {
@@ -34,6 +35,13 @@ export function renderOnlyFavouriteMovies(favouriteArray){
         movies: favouriteArray
     }
 }
+
+// export function renderAllMovies(moviesObject){
+//     return {
+//         type: ALL_MOVIES,
+//         movies: moviesObject
+//     }
+// }
 
 export function addMovieToList(movieData){
     return {

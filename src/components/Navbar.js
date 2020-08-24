@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchedComponents from './SearchedComponent';
 import { addMovieToList, handleMovieSearch } from '../actions/action';
+import { connect } from 'react-redux';
 
 class Navbar extends React.Component{
 
@@ -17,11 +18,6 @@ class Navbar extends React.Component{
     }
 
     handleChange = (event) => {
-        // console.log(event.target.value);
-        
-        if (event.target.value === ""){
-            this.props.search.showSearchResult = false;
-        }
 
         this.setState({
             searchText: event.target.value
@@ -61,4 +57,12 @@ class Navbar extends React.Component{
     }
 }
 
-export default Navbar;
+function callback (state){
+    return {
+        search: state.search
+    }
+}
+
+const ConnectedNavBarComponent = connect(callback)(Navbar);
+
+export default ConnectedNavBarComponent;

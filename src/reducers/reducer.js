@@ -49,6 +49,16 @@ export function movies (state = initialMovieState, action) {
         }
     }
 
+    // else if (action.type === ALL_MOVIES){
+
+    //     let updatedMoviesArray = action.movies.movies.concat(action.movies.favourites);
+
+    //     return {
+    //         ...state,
+    //         movies: updatedMoviesArray
+    //     }
+    // }
+
     return state;
 }
 
@@ -68,6 +78,16 @@ export function search(state = initialSearchState, action){
             showSearchResult: true
         }
     }
+
+    else if (action.type === ADD_MOVIE){
+        
+
+        return {
+            ...state,
+            showSearchResult: false
+        }
+    }
+
     return state;
 }
 
