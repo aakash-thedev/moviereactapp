@@ -6,7 +6,7 @@ export const REMOVE_FAVOURITES = 'REMOVE_FAVOURITES';
 export const ONLY_FAVOURITES = 'ONLY_FAVOURITES';
 export const ADD_MOVIE = 'ADD_MOVIE';
 export const ADD_SEARCH_TO_STORE = 'ADD_SEARCH_TO_STORE';
-// export const ALL_MOVIES = "ALL_MOVIES";
+export const SET_SHOW_FAVOURITES = "SET_SHOW_FAVOURITES";
 
 export function addMovies(movieArray){
     return {
@@ -29,10 +29,10 @@ export function removeFavourites_Action(movieData){
     }
 }
 
-export function renderOnlyFavouriteMovies(favouriteArray){
+export function setShowFavourites(value){
     return {
-        type: ONLY_FAVOURITES,
-        movies: favouriteArray
+        type: SET_SHOW_FAVOURITES,
+        showFavourites: value
     }
 }
 

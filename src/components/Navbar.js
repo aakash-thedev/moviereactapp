@@ -31,21 +31,29 @@ class Navbar extends React.Component{
         return;
     }
 
+    onHittingEnter = () => {
+        const { searchText } = this.state;
+
+        this.props.dispatch( handleMovieSearch(searchText) );
+        return;
+    }
+
     render(){
 
         const { result, showSearchResult } = this.props.search;
+        const { searchText } = this.state;
         
         return(
             <div className = "nav">
                 <div className = "search-container">
-                    <input onChange = {this.handleChange}/>
-                    <button id = "search-btn" onClick = {this.handleSearch}>Search Button</button>
+                    <input id = "input" onKeyUp = {this.onHittingEnter} onChange = {this.handleChange}/>
+                    <button id = "search-btn" onClick = {this.handleSearch}><i className="fas fa-search"></i></button>
 
                 {
-                    showSearchResult ?
+                    (showSearchResult && searchText !== '') ?
                         <SearchedComponents
                             result = {result}
-                            handleAddToMovies = {this.handleAddToMovies}
+                            handleAddToMovies = { this.handleAddToMovies }
                         />
                     :
                         <div></div>

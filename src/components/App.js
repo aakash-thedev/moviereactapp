@@ -1,8 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import MovieCard from './MovieCard';
-import { data } from '../data';
-import { addMovies, renderOnlyFavouriteMovies } from '../actions/action';
+import { addMovies, setShowFavourites } from '../actions/action';
 import { connect } from 'react-redux';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
@@ -39,57 +38,36 @@ class App extends React.Component{
   }
 
 
-  // FUNCTION FOR THE TAB MOVIES 
-
-  allMovies = () => {
-    firebase
-    .firestore()
-    .collection('movies')
-    .onSnapshot( (snapshot) => {
-      const moviesArray = snapshot.docs.map((item) => {
-        let data = item.data();
-        return data;
-      })
-
-      console.log('Movies array', moviesArray);
-      this.props.dispatch(addMovies(moviesArray));
-    })
-    // this.props.dispatch(addMovies(data));
-  }
-
-
-  // FUNCTION FOR THE TAB FAVOURITES
-
-  onlyFavouriteMovies = () => {
-
-    const { movies } = this.props;
-
-    if (movies.favourites.isFavListEmpty === true){
-      return;
-    }
-    else{
-      this.props.dispatch( renderOnlyFavouriteMovies(movies.favourites) )
-    }
-
+  changeTab = (value) => {
+    this.props.dispatch( setShowFavourites(value) )
   }
 
   render(){
 
     const { movies, search } = this.props; // { movies: {}, search: {} }
+    const { showFavourites } = movies;
+
+    const displayMovies = showFavourites ? movies.favourites : movies.movies
 
     return (
       <div className = "App">
         <Navbar dispatch = {this.props.dispatch} search = {search} />
+
+        <div className = "tabs">
+            <div className = {`tab ${showFavourites ? '' : 'active-tabs'}`} onClick = {() => this.changeTab(false)}>Home</div>
+            <div className = {`tab ${showFavourites ? 'active-tabs' : ''}`} onClick = {() => this.changeTab(true)}>Favourites</div>
+        </div>
+
         <div className = "main">
 
-          <div className = "tabs">
-            <div className = "tab" onClick = {this.allMovies}>Movies</div>
-            <div className = "tab" onClick = {this.onlyFavouriteMovies}>Favourites</div>
-          </div>
+          {/* <div className = "tabs">
+            <div className = {`tab ${showFavourites ? '' : 'active-tabs'}`} onClick = {() => this.changeTab(false)}>Movies</div>
+            <div className = {`tab ${showFavourites ? 'active-tabs' : ''}`} onClick = {() => this.changeTab(true)}>Favourites</div>
+          </div> */}
 
           <div className = 'list'>
             {
-              movies.movies.map((movie, index) => (
+              displayMovies.map((movie, index) => (
                 <MovieCard movieData = {movie}
                 key = {`movies ${index}`}
                 dispatch = { this.props.dispatch }
@@ -98,6 +76,10 @@ class App extends React.Component{
               ))
             }
           </div>
+
+          {(displayMovies === movies.movies && displayMovies.length === 0) ? <div className = "no-movies"> Fetching Movies ...</div> : null}
+          {(displayMovies === movies.favourites && displayMovies.length === 0) ? <div className = "no-movies"> No Movies in Favourites</div> : null}
+
         </div>
       </div>
     );

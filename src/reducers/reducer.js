@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
-import { ADD_MOVIES, ADD_FAVOURITES, REMOVE_FAVOURITES, ONLY_FAVOURITES, ADD_MOVIE, ADD_SEARCH_TO_STORE } from '../actions/action';
+import { ADD_MOVIES, ADD_FAVOURITES, REMOVE_FAVOURITES, SET_SHOW_FAVOURITES, ADD_MOVIE, ADD_SEARCH_TO_STORE } from '../actions/action';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
 const initialMovieState = {
     movies: [],
     favourites: [],
-    IsfavListEmpty: true
+    showFavourites: false,
+    isMovieFavourite: false
 }
 
 export function movies (state = initialMovieState, action) {
@@ -19,6 +20,12 @@ export function movies (state = initialMovieState, action) {
     }
 
     else if (action.type === ADD_FAVOURITES){
+
+        // firebase
+        // .firestore()
+        // .collection('favourites')
+        // .add(action.movie)
+
         return {
             ...state,
             favourites: [action.movie, ...state.favourites]
@@ -34,11 +41,11 @@ export function movies (state = initialMovieState, action) {
         }
     }
 
-    else if (action.type === ONLY_FAVOURITES){
+    else if (action.type === SET_SHOW_FAVOURITES){
 
         return {
             ...state,
-            movies: action.movies
+            showFavourites: action.showFavourites
         }
     }
 
