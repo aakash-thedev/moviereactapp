@@ -4,13 +4,27 @@ import MovieCard from './MovieCard';
 import { data } from '../data';
 import { addMovies, renderOnlyFavouriteMovies } from '../actions/action';
 import { connect } from 'react-redux';
-
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 class App extends React.Component{
 
   componentDidMount = () => {
+    firebase
+    .firestore()
+    .collection('movies')
+    .onSnapshot( (snapshot) => {
+      const moviesArray = snapshot.docs.map((item) => {
+        let data = item.data();
+        return data;
+      })
+
+      console.log('Movies array', moviesArray);
+      this.props.dispatch(addMovies(moviesArray));
+    })
+
     // console.log(this.props.store);
-    this.props.dispatch(addMovies(data));
+    // this.props.dispatch(addMovies(data));
 
   }
 
@@ -28,8 +42,19 @@ class App extends React.Component{
   // FUNCTION FOR THE TAB MOVIES 
 
   allMovies = () => {
+    firebase
+    .firestore()
+    .collection('movies')
+    .onSnapshot( (snapshot) => {
+      const moviesArray = snapshot.docs.map((item) => {
+        let data = item.data();
+        return data;
+      })
 
-    this.props.dispatch(addMovies(data));
+      console.log('Movies array', moviesArray);
+      this.props.dispatch(addMovies(moviesArray));
+    })
+    // this.props.dispatch(addMovies(data));
   }
 
 

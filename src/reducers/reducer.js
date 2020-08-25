@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { ADD_MOVIES, ADD_FAVOURITES, REMOVE_FAVOURITES, ONLY_FAVOURITES, ADD_MOVIE, ADD_SEARCH_TO_STORE } from '../actions/action';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 const initialMovieState = {
     movies: [],
@@ -42,22 +44,16 @@ export function movies (state = initialMovieState, action) {
 
     else if (action.type === ADD_MOVIE){
         
+        firebase
+        .firestore()
+        .collection('movies')
+        .add(action.movie)
 
         return {
             ...state,
             movies: [action.movie, ...state.movies]
         }
     }
-
-    // else if (action.type === ALL_MOVIES){
-
-    //     let updatedMoviesArray = action.movies.movies.concat(action.movies.favourites);
-
-    //     return {
-    //         ...state,
-    //         movies: updatedMoviesArray
-    //     }
-    // }
 
     return state;
 }

@@ -3,10 +3,24 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 import './index.css';
 import App from './components/App';
 import combineReducers from './reducers/reducer';
+
+var firebaseConfig = {
+  apiKey: "AIzaSyBC4p1LP2oxiLLh9S7WRdGi_1Vi-XAYHuQ",
+  authDomain: "movies-fun-app.firebaseapp.com",
+  databaseURL: "https://movies-fun-app.firebaseio.com",
+  projectId: "movies-fun-app",
+  storageBucket: "movies-fun-app.appspot.com",
+  messagingSenderId: "965366723214",
+  appId: "1:965366723214:web:e4de28f6f38025fdd84fdf"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 // using currying concept
 

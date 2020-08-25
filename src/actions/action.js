@@ -36,13 +36,6 @@ export function renderOnlyFavouriteMovies(favouriteArray){
     }
 }
 
-// export function renderAllMovies(moviesObject){
-//     return {
-//         type: ALL_MOVIES,
-//         movies: moviesObject
-//     }
-// }
-
 export function addMovieToList(movieData){
     return {
         type: ADD_MOVIE,
