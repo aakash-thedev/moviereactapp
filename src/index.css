@@ -90,6 +90,7 @@ body {
   position: relative;
   top: 4px;
 }
+
 .main {
   width: 80%;
   margin: 0 auto;
@@ -97,6 +98,7 @@ body {
   box-sizing: border-box;
   background-color: white;
   user-select: none;
+  display: flex;
 
 }
 .main .tabs {
@@ -112,7 +114,7 @@ body {
   flex-direction: column;
   height: 100px;
   justify-content: space-evenly;
-  top: 9%;
+  top: 9.5%;
   left: 1%;
   color: white;
 }
@@ -131,7 +133,7 @@ body {
 }
 
 .active-tabs {
-  background: #79b8ff !important;
+  background: rgb(0, 78, 131) !important;
   color: white;
   border-bottom: 0.5px solid whitesmoke;
   transition-duration: 0.5s;
@@ -149,7 +151,6 @@ body {
 }
 
 .movie-card {
-  /* background-image: linear-gradient(45deg, white 90%, rgb(0, 178, 248) 10%); */
   background-image: linear-gradient(45deg, white 95%, rgb(10, 172, 221) 5%);
   padding: 0%;
   border: none;
@@ -219,6 +220,8 @@ body {
 }
 .no-movies {
   padding: 20px 0;
-  font-size: 20px;
-  color: #6d6d6d;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  left: 10%;
 }

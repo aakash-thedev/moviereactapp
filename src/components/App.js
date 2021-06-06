@@ -53,17 +53,14 @@ class App extends React.Component{
       <div className = "App">
         <Navbar dispatch = {this.props.dispatch} search = {search} />
 
-        <div className = "tabs">
-            <div className = {`tab ${showFavourites ? '' : 'active-tabs'}`} onClick = {() => this.changeTab(false)}>Home</div>
-            <div className = {`tab ${showFavourites ? 'active-tabs' : ''}`} onClick = {() => this.changeTab(true)}>Favourites</div>
-        </div>
+        <aside className = "sidebar">
+            <div className = "tabs">
+                <div className = {`tab ${showFavourites ? '' : 'active-tabs'}`} onClick = {() => this.changeTab(false)}>Home</div>
+                <div className = {`tab ${showFavourites ? 'active-tabs' : ''}`} onClick = {() => this.changeTab(true)}>Favourites</div>
+            </div>
+        </aside>
 
         <div className = "main">
-
-          {/* <div className = "tabs">
-            <div className = {`tab ${showFavourites ? '' : 'active-tabs'}`} onClick = {() => this.changeTab(false)}>Movies</div>
-            <div className = {`tab ${showFavourites ? 'active-tabs' : ''}`} onClick = {() => this.changeTab(true)}>Favourites</div>
-          </div> */}
 
           <div className = 'list'>
             {

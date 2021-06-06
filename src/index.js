@@ -11,13 +11,12 @@ import App from './components/App';
 import combineReducers from './reducers/reducer';
 
 var firebaseConfig = {
-  apiKey: "AIzaSyBC4p1LP2oxiLLh9S7WRdGi_1Vi-XAYHuQ",
-  authDomain: "movies-fun-app.firebaseapp.com",
-  databaseURL: "https://movies-fun-app.firebaseio.com",
-  projectId: "movies-fun-app",
-  storageBucket: "movies-fun-app.appspot.com",
-  messagingSenderId: "965366723214",
-  appId: "1:965366723214:web:e4de28f6f38025fdd84fdf"
+  apiKey: "AIzaSyA3qWHCKPG4zgOy1g2qSKIteNcpoWY6z7s",
+  authDomain: "moviereactapp-fbc40.firebaseapp.com",
+  projectId: "moviereactapp-fbc40",
+  storageBucket: "moviereactapp-fbc40.appspot.com",
+  messagingSenderId: "731821978696",
+  appId: "1:731821978696:web:0224f2e48e1c4d7dd2d47d"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

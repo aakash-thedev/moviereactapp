@@ -21,10 +21,10 @@ export function movies (state = initialMovieState, action) {
 
     else if (action.type === ADD_FAVOURITES){
 
-        // firebase
-        // .firestore()
-        // .collection('favourites')
-        // .add(action.movie)
+        firebase
+        .firestore()
+        .collection('favourites')
+        .add(action.movie)
 
         return {
             ...state,

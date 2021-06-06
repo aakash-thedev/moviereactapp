@@ -46,7 +46,7 @@ class Navbar extends React.Component{
         return(
             <div className = "nav">
                 <div className = "search-container">
-                    <input id = "input" onKeyUp = {this.onHittingEnter} onChange = {this.handleChange}/>
+                    <input id = "input" onKeyUp = {this.onHittingEnter} onChange = {this.handleChange} placeholder="Search any movies...."/>
                     <button id = "search-btn" onClick = {this.handleSearch}><i className="fas fa-search"></i></button>
 
                 {
